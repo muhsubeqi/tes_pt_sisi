@@ -48,6 +48,10 @@ class LoginController extends Controller
         ]);
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'delete_mark' => 0])) {
+            if (Auth::user()->status_user == 'Tidak Aktif') {
+                Auth::logout();
+                return redirect()->route('login')->with('error', 'Akun Anda Dinonaktifkan');
+            }
             //add activity
             $userActivity = new UserActivity();
             $userActivity->id_user = \Auth::user()->id_user;

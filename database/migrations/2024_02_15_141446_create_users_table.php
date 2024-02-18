@@ -29,7 +29,6 @@ class CreateUsersTable extends Migration
             $table->timestamp('create_date')->useCurrent()->nullable();
             $table->string('update_by', 30)->nullable();
             $table->timestamp('update_date')->useCurrent()->nullable();
-            $table->rememberToken();
         });
     }
 

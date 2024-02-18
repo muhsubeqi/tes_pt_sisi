@@ -34,7 +34,11 @@
                                     Password default user <b>123456</b> setelah menambahkan user
                                 </li>
                                 <li>
-                                    Untuk mengganti password user, bisa klik tombol <b>KLIK</b> lalu pilih edit
+                                    Untuk mengganti <b>Password & Status</b> user, bisa klik tombol <b>KLIK</b> lalu pilih
+                                    edit
+                                </li>
+                                <li>
+                                    User tidak bisa login jika status <b>Tidak Aktif</b>
                                 </li>
                             </ol>
                         </div>
@@ -192,6 +196,15 @@
                                     placeholder="Masukkan PIN">
                             </div>
                             <div class="form-group">
+                                <label>Status</label>
+                                <select name="status_user_edit" id="status_user_edit" class="form-control select2bs4">
+                                    <option value="">Pilih</option>
+                                    @foreach (App\Services\BulkData::statusUser as $item)
+                                        <option value="{{ $item }}">{{ $item }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
                                 <label>Ubah Password</label>
                                 <input type="password" name="password_edit" class="form-control"
                                     placeholder="Masukkan Password">
@@ -312,6 +325,7 @@
             var no_hp = button.data('no_hp');
             var wa = button.data('wa');
             var pin = button.data('pin');
+            var status_user = button.data('status_user');
             var foto = button.data('foto');
 
 
@@ -324,6 +338,7 @@
             modal.find('#no_hp_edit').val(no_hp);
             modal.find('#wa_edit').val(wa);
             modal.find('#pin_edit').val(pin);
+            modal.find('#status_user_edit').val(status_user).change();
             modal.find('#fotolama_edit').val(foto);
         })
 

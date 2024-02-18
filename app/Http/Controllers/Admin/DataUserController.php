@@ -65,6 +65,7 @@ class DataUserController extends Controller
                             data-no_hp="' . $row->no_hp . '"
                             data-wa="' . $row->wa . '"
                             data-pin="' . $row->pin . '"
+                            data-status_user="' . $row->status_user . '"
                             data-foto="' . $row->foto . '"
                         >Edit</button>
                         <form action="" onsubmit="deleteData(event)" method="POST">
@@ -119,7 +120,7 @@ class DataUserController extends Controller
             $user->wa = $request->wa;
             $user->pin = $request->pin;
             $user->id_jenis_user = 2;
-            $user->status_user = 'aktif';
+            $user->status_user = 'Aktif';
             $user->create_by = \Auth::user()->id_user;
             $user->update_by = \Auth::user()->id_user;
             $user->save();
@@ -187,6 +188,7 @@ class DataUserController extends Controller
                 'no_hp_edit' => 'nullable',
                 'wa_edit' => 'nullable',
                 'pin_edit' => 'nullable',
+                'status_user_edit' => 'nullable',
                 'password_edit' => 'nullable',
             ]);
 
@@ -213,7 +215,7 @@ class DataUserController extends Controller
             $user->no_hp = $request->no_hp_edit;
             $user->wa = $request->wa_edit;
             $user->pin = $request->pin_edit;
-            $user->status_user = 'aktif';
+            $user->status_user = $request->status_user_edit;
             $user->update_by = \Auth::user()->id_user;
             $user->save();
 
